@@ -146,18 +146,25 @@ class PassController: UIViewController {
             testResultsView.backgroundColor = UIColor.green
             playSoundEffects?.playSound(for: self)
             testResultsMessage.text = "Access Granted"
-            if rideAccessKiosk.swipe(forPermission: .standard, with: rideAccessKiosk.swipeFunction) {
-                testResultsMessage.text = testResultsMessage.text! + "\nStandard Rider"
-            } else if rideAccessKiosk.swipe(forPermission: .skipPrivilege, with: rideAccessKiosk.swipeFunction) {
-                testResultsMessage.text = testResultsMessage.text! + "\nExpress Rider"
         } else {
             testResultsView.backgroundColor = UIColor.red
                 playSoundEffects?.playSound(for: self)
             testResultsMessage.text = "Access Denied"
         }
-            testResultsMessage.text = testResultsMessage.text! + " " + printBirthdayMessage()
+        
+        if rideAccessKiosk.swipeFunction(authorizing: .standard) {
+            testResultsMessage.text = testResultsMessage.text! + " " + "\nStandard Rider"
+            print(testResultsMessage.text!)
+        } else if rideAccessKiosk.swipeFunction(authorizing: .skipPrivilege) {
+            testResultsMessage.text = testResultsMessage.text! + " " +  "\nExpress Rider"
+            print(testResultsMessage.text!)
         }
+
+            testResultsMessage.text = testResultsMessage.text! + " " + printBirthdayMessage()
+    }
     
+    func priorityAccessTesting() {
+        
     }
     
     func discountAccessTestingFor(_ discount: AccessPermission.Discount) {
@@ -189,6 +196,7 @@ class PassController: UIViewController {
         case "Amusement": areaAccessTestingFor(.amusement)
         case "Rides":
             rideAccessTesting()
+//            priorityAccessTesting()
         case "Food Discount":
             discountAccessTestingFor(.food)
         case "Merch. Discount":

@@ -9,7 +9,7 @@
 enum AccessPermission {
     case areaAccess(AreaAccess)
     case rideAccess(RideAccess)
-    case ridePriority(RidePriority)
+//    case ridePriority(RidePriority)
     case discountAccess(Discount, Int)
     
     enum AreaAccess {
@@ -23,12 +23,14 @@ enum AccessPermission {
     enum RideAccess {
         case noRides
         case allRides
-    }
-    
-    enum RidePriority {
         case standard
         case skipPrivilege
     }
+    
+//    enum RidePriority {
+//        case standard
+//        case skipPrivilege
+//    }
     
     enum Discount {
         case food

@@ -16,7 +16,7 @@ class RideAccessKiosk: Kiosk {
             switch permission {
             case .rideAccess(authorization) :
                 switch authorization {
-                case .allRides:
+                case .allRides, .standard, .skipPrivilege:
                     return true
                     
                 case .noRides:
@@ -29,20 +29,18 @@ class RideAccessKiosk: Kiosk {
         return false
     }
     
-    func swipeFunction(authorizing authorization: AccessPermission.RidePriority) -> Bool {
-        for permission in pass.getAccessPrivileges() {
-            switch permission {
-            case .ridePriority(let linePriority):
-                switch linePriority {
-                case .standard:
-                    return true
-                case .skipPrivilege:
-                    return true
-                }
-            default:
-                continue
-            }
-        }
-        return false
-    }
+//    func prioritySwipeFunction(authorizing authorization: AccessPermission.RidePriority) -> Bool {
+//        for permission in pass.getAccessPrivileges() {
+//            switch permission {
+//            case .ridePriority(let linePriority):
+//                switch linePriority {
+//                case .standard, .skipPrivilege:
+//                    return true
+//                }
+//            default:
+//                continue
+//            }
+//        }
+//        return false
+//    }
 }

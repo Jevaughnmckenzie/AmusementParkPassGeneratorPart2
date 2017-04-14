@@ -29,12 +29,12 @@ struct Pass {
         case .guest(let guestType) :
             switch guestType {
             case .regularGuest, .child:
-                return [.areaAccess(.amusement), .rideAccess(.allRides), .ridePriority(.standard)]
+                return [.areaAccess(.amusement), .rideAccess(.allRides), .rideAccess(.standard)]
             case .vip:
-                return [.areaAccess(.amusement), .rideAccess(.allRides), .ridePriority(.skipPrivilege),
+                return [.areaAccess(.amusement), .rideAccess(.allRides), .rideAccess(.skipPrivilege),
                         .discountAccess(.food, 10), .discountAccess(.merchandise, 20)]
             case .senior, .seasonPass:
-                return [.areaAccess(.amusement), .rideAccess(.allRides), .ridePriority(.skipPrivilege),
+                return [.areaAccess(.amusement), .rideAccess(.allRides), .rideAccess(.skipPrivilege),
                         .discountAccess(.food, 10), .discountAccess(.merchandise, 10)]
                 
             }
@@ -43,13 +43,13 @@ struct Pass {
             switch employeeType {
             case .foodService :
                 return [.areaAccess(.amusement), .areaAccess(.kitchen), .rideAccess(.allRides),
-                        .ridePriority(.standard), .discountAccess(.food, 15), .discountAccess(.merchandise, 25)]
+                        .rideAccess(.standard), .discountAccess(.food, 15), .discountAccess(.merchandise, 25)]
             case .rideService :
                 return [.areaAccess(.amusement), .areaAccess(.rideControl), .rideAccess(.allRides),
-                        .ridePriority(.standard), .discountAccess(.food, 15), .discountAccess(.merchandise, 25)]
+                        .rideAccess(.standard), .discountAccess(.food, 15), .discountAccess(.merchandise, 25)]
             case .maintenance :
                 return [.areaAccess(.amusement), .areaAccess(.kitchen), .areaAccess(.rideControl),
-                        .areaAccess(.maintenance), .rideAccess(.allRides), .ridePriority(.standard),
+                        .areaAccess(.maintenance), .rideAccess(.allRides), .rideAccess(.standard),
                         .discountAccess(.food, 15), .discountAccess(.merchandise, 25)]
             case .contract:
                 let projectNumber = personalInfo.projectNumber
@@ -79,7 +79,7 @@ struct Pass {
         case .manager :
             return [.areaAccess(.amusement), .areaAccess(.kitchen), .areaAccess(.rideControl),
                     .areaAccess(.maintenance), .areaAccess(.office), .rideAccess(.allRides),
-                    .ridePriority(.standard), .discountAccess(.food, 25), .discountAccess(.merchandise, 25)]
+                    .rideAccess(.standard), .discountAccess(.food, 25), .discountAccess(.merchandise, 25)]
             
             
         case .vendor(let vendorType):
